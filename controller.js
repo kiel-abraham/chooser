@@ -1,3 +1,5 @@
+/* global angular $ */
+
 var app = angular.module("chooserApp", []);
 
 app.controller("mainCtrl", ["$scope", function ($scope) {
