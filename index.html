@@ -1,17 +1,23 @@
 <!DOCTYPE html>
 <html lang="en" ng-app="chooserApp">
-  <head>
+<head>
     <meta charset="utf-8" name="viewport" content="width=device-width, initial-scale=1">
     <title>Help Me Choose</title>
     
+    <meta name="apple-mobile-web-app-capable" content="yes">
+	<meta name="mobile-web-app-capable" content="yes">
+	
     <!--apple touch icon-->
-    <link rel="apple-touch-icon" href="apple-touch-icon.png">
+    <link rel="apple-touch-icon" href="apple-touch-icon.png"/>
+    <!--favicon-->
+    <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico"/>
     <!-- compiled and minified CSS -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
     <!--fontawesome-->
     <link rel="stylesheet" href="https://opensource.keycdn.com/fontawesome/4.7.0/font-awesome.min.css" type="text/css"/>
     <!--Bootstrap Slate theme-->
     <link rel="stylesheet" href="theme.css" type="text/css"/>
+    
     <!--Angular-->
     <script async type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.0/angular.min.js"></script>
     <!--jQuery-->
@@ -20,57 +26,58 @@
     <script async src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
     <!--controller-->
     <script type="text/javascript" src="controller.js"></script>
+    
     <!--inline script-->
     <script>
-    window.onload = function () {
-        $("#input").focus();
-      };
+        window.onload = function () {
+            $("#input").focus();
+        };
     </script>
-  </head>
-  <body>
+</head>
+<body>
     <main class="container">
-      <div class="jumbotron" ng-controller="mainCtrl">
-        <h1>Helpful Chooser</h1>
-        <p>Welcome to our random choice generator
-        <br>Enter as many options as you like and let the Helpful Chooser do the work!</p>
-        <div class="row">
-          <div class="col-md-6">
-            <form ng-submit="enter()" ng-hide="hideAdd" autocomplete="off">
-              <div class="form-group">
-                <label class="control-label" for="input"></label>
-                <div class="input-group">
-                  <input type="text" id="input" class="form-control" ng-model="option" placeholder="Enter an option">
-                  <span class="input-group-btn">
-                    <button class="btn btn-info" type="button" ng-click="enter()">
-                      <i class="fa fa-plus" aria-hidden="true"></i>
-                      <span class="sr-only">Add</span>
-                    </button>
-                  </span>
+        <div class="jumbotron" ng-controller="mainCtrl">
+            <h1>Helpful Chooser</h1>
+            <p>Welcome to our random choice generator<br>
+            Enter as many options as you like and let the Helpful Chooser do the work!</p>
+            <div class="row">
+                <div class="col-md-6">
+                    <form ng-submit="enter()" ng-hide="hideAdd" autocomplete="off">
+                        <div class="form-group">
+                            <label class="control-label" for="input"></label>
+                            <div class="input-group">
+                                <input type="text" id="input" class="form-control" ng-model="option" placeholder="Enter an option">
+                                <span class="input-group-btn">
+                                    <button class="btn btn-info" type="button" ng-click="enter()">
+                                        <i class="fa fa-plus" aria-hidden="true"></i>
+                                        <span class="sr-only">Add</span>
+                                    </button>
+                                </span>
+                            </div>
+                        </div>
+                    </form>
+                    <div class="panel panel-primary" ng-show="visible">
+                        <div class="panel-heading">
+                            <h3 class="panel-title">Choice</h3>
+                        </div>
+                        <div class="panel-body">
+                            {{ selected }}
+                        </div>
+                    </div>
+                    <a href="" class="btn btn-warning" ng-hide="hideReset" ng-click="reset()">Start over</a>
+                    <a href="" class="btn btn-primary" ng-hide="hideChoose" ng-click="run()">Choose</a>
                 </div>
-              </div>
-            </form>
-            <div class="panel panel-primary" ng-show="visible">
-              <div class="panel-heading">
-                <h3 class="panel-title">Choice</h3>
-              </div>
-              <div class="panel-body">
-                {{ selected }}
-              </div>
+                <br>
+                <div class="col-md-6">
+                    <ul class="list-group">
+                        <li class="list-group-item" ng-repeat="item in data">
+                            {{ item }}
+                            <i class="fa fa-window-close pull-right text-danger" aria-hidden="true" ng-click="remove($index)"></i>
+                        </li>
+                    </ul>
+                </div> 
             </div>
-            <a href="" class="btn btn-warning" ng-hide="hideReset" ng-click="reset()">Start over</a>
-            <a href="" class="btn btn-primary" ng-hide="hideChoose" ng-click="run()">Choose</a>
-          </div>
-          <br>
-          <div class="col-md-6">
-            <ul class="list-group">
-              <li class="list-group-item" ng-repeat="item in data">
-                {{ item }}
-                <i class="fa fa-window-close pull-right text-danger" aria-hidden="true" ng-click="remove($index)"></i>
-              </li>
-            </ul>
-          </div>
-        </div>
-      </div> <!-- /jumbotron -->
+        </div> <!-- /jumbotron -->
     </main>
-  </body>
+</body>
 </html>
