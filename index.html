@@ -27,15 +27,9 @@
     <!--controller-->
     <script type="text/javascript" src="controller.js"></script>
     
-    <!--inline script-->
-    <script>
-        window.onload = function () {
-            $("#input").focus();
-        };
-    </script>
 </head>
 <body>
-    <main class="container test">
+    <main class="container">
         <div class="jumbotron" ng-controller="mainCtrl">
             <h1>Helpful Chooser</h1>
             <p>Welcome to our random choice generator<br>
@@ -46,7 +40,7 @@
                         <div class="form-group">
                             <label class="control-label" for="input"></label>
                             <div class="input-group">
-                                <input type="text" id="input" class="form-control" ng-model="option" placeholder="Enter an option">
+                                <input type="text" id="input" class="form-control" ng-model="option" placeholder="Enter an option" autofocus>
                                 <span class="input-group-btn">
                                     <button class="btn btn-info" type="button" ng-click="enter()">
                                         <i class="fa fa-plus" aria-hidden="true"></i>
