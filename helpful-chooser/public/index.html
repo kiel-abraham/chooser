@@ -1,31 +1,52 @@
 <!doctype html>
 <html lang="en">
-  <head>
+<head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="mobile-web-app-capable" content="yes">
+    
     <link rel="shortcut icon" href="%PUBLIC_URL%/favicon.ico">
-    <!--
-      Notice the use of %PUBLIC_URL% in the tag above.
-      It will be replaced with the URL of the `public` folder during the build.
-      Only files inside the `public` folder can be referenced from the HTML.
-
-      Unlike "/favicon.ico" or "favicon.ico", "%PUBLIC_URL%/favicon.ico" will
-      work correctly both with client-side routing and a non-root public URL.
-      Learn how to configure a non-root public URL by running `npm run build`.
-    -->
+    <link rel="apple-touch-icon" href="%PUBLIC_URL%/apple-touch-icon.png"/>
+    <link rel="stylesheet" href="%PUBLIC_URL%/theme.css" type="text/css" />
+    <link rel="stylesheet" href="https://opensource.keycdn.com/fontawesome/4.7.0/font-awesome.min.css" type="text/css">
+    
     <title>Helpful Chooser</title>
-  </head>
-  <body>
+</head>
+<body>
     <div id="root"></div>
-    <!--
-      This HTML file is a template.
-      If you open it directly in the browser, you will see an empty page.
-
-      You can add webfonts, meta tags, or analytics to this file.
-      The build step will place the bundled scripts into the <body> tag.
-
-      To begin the development, run `npm start`.
-      To create a production bundle, use `npm run build`.
-    -->
-  </body>
+    <main class="container">
+        <section class="jumbotron">
+            <h1>Helpful Chooser</h1>
+            <p>Welcome to our random choice generator<br>
+            Enter as many options as you like and let the Helpful Chooser do the work!</p>
+             <div class="row">
+                <div class="col-md-6">
+                    <form>
+                        <div class="form-group">
+                            <label class="control-label" for="input"></label>
+                            <div class="input-group">
+                                <input type="text" id="input" class="form-control" placeholder="Enter an option" autofocus>
+                                <span class="input-group-btn">
+                                    <button class="btn btn-info" type="button">
+                                        <i class="fa fa-plus" aria-hidden="true"></i>
+                                        <span class="sr-only">Add</span>
+                                    </button>
+                                </span>
+                            </div>
+                        </div>
+                    </form>
+                    <a href="" class="btn btn-warning">Start over</a>
+                    <a href="" class="btn btn-primary">Choose</a>
+                </div>
+                <br>
+                <div class="col-md-6">
+                    <ul id="list" class="list-group">
+                        <!-- this is where the list will be displayed -->
+                    </ul>
+                </div> 
+            </div>
+        </section>
+    </main> 
+</body>
 </html>
