@@ -1,12 +1,17 @@
 import React, { Component } from 'react';
+import List from "./List";
+
+const itemList = [
+    {id: 1, text: "Test1"},
+    {id: 2, text: "Test2"},
+    {id: 3, text: "Test3"},
+    {id: 4, text: "Test4"}
+];
 
 class App extends Component {
     render() {
         return (
-            <li className="list-group-item">
-                Item
-                <i className="fa fa-window-close pull-right text-danger" aria-hidden="true"></i>
-            </li>
+            <List list={itemList} />
         );
     }
 }
