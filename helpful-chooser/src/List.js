@@ -11,13 +11,13 @@ class List extends Component {
     render() {
         return (
             <ul className="list-group">
-                {this.props.list.map(c => <Item key={c.id} id={c.id} item={c.text} remove={this.remove}/>)}
+                {this.props.list.map(c => <Item key={c.id} item={c.text} remove={this.remove}/>)}
             </ul>
         );
     }
     
-    remove(id, text) {
-        console.log("Deleting - " + id + ": " + text);
+    remove(text) {
+        this.props.remove(text);
     }
 }
 

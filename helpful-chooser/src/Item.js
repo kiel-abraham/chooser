@@ -11,13 +11,16 @@ class Item extends Component {
         return (
             <li className="list-group-item">
                 {this.props.item}
-                <i className="fa fa-window-close pull-right text-danger" aria-hidden="true" onClick={this.remove}></i>
+                <div className="close-item pull-right text-danger" onClick={this.remove}>
+                    <i className="fa fa-window-close" aria-hidden="true"></i>
+                    <span className="sr-only">Remove</span>
+                </div>
             </li>
         );
     }
     
-    remove(){
-        this.props.remove(this.props.id, this.props.item);
+    remove() {
+        this.props.remove(this.props.item);
     }
 }
 
