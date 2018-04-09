@@ -8,6 +8,7 @@ class App extends Component {
         super(props);
         this.remove = this.remove.bind(this);
         this.choose = this.choose.bind(this);
+        this.create = this.create.bind(this);
         this.state = {
 			itemList: [],
 			choose: false,
@@ -35,10 +36,20 @@ class App extends Component {
     }
     
     choose() {
-        let list = this.state.itemList;
-        let r = Math.floor(Math.random() * list.length);
+        let options = this.state.itemList;
+        let r = Math.floor(Math.random() * options.length);
         this.setState({choose: true});
-        this.setState({result: list[r].text});
+        this.setState({result: options[r].text});
+    }
+    
+    create(e) {
+        e.preventDefault();
+        let inputItem = this.refs.createItem.value;
+        console.log(inputItem);
+        this.state.itemList.push({id: 7, text: inputItem});
+        this.setState({itemList: this.state.itemList});
+        
+        this.refs.createItem.value = "";
     }
     
     render() {
@@ -49,13 +60,13 @@ class App extends Component {
                     <a href="" className="btn btn-default">Start Over <i className="fa fa-refresh" aria-hidden="true"></i></a>
                     :
                     <div>
-                        <form>
+                        <form onSubmit={this.create}>
                             <div className="form-group">
                                 <label className="control-label" htmlFor="input"></label>
                                 <div className="input-group">
-                                    <input type="text" id="input" className="form-control" placeholder="Enter an option" autoFocus />
+                                    <input type="text" id="input" className="form-control" placeholder="Enter an option" autoFocus ref="createItem" />
                                     <span className="input-group-btn">
-                                        <button className="btn btn-info" type="button">
+                                        <button className="btn btn-info">
                                             <i className="fa fa-plus" aria-hidden="true"></i>
                                             <span className="sr-only">Add</span>
                                         </button>

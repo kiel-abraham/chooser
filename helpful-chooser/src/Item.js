@@ -19,7 +19,7 @@ class Item extends Component {
         }
         
         return (
-            <li className={`list-group-item ${active}` }>
+            <li className={`list-group-item ${active}`}>
                 {this.props.item}
             { !this.props.choose ?
                 <div className="close-item pull-right text-danger" onClick={this.remove}>
