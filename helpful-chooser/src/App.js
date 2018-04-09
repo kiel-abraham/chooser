@@ -25,6 +25,21 @@ class App extends Component {
             ]
         });
 	}
+	
+	remove(val) {
+        let array = this.state.itemList;
+        array = array.filter(function (x) {
+			 return x.text !== val;
+		});
+		this.setState({itemList: array});
+    }
+    
+    choose() {
+        let list = this.state.itemList;
+        let r = Math.floor(Math.random() * list.length);
+        this.setState({choose: true});
+        this.setState({result: list[r].text});
+    }
     
     render() {
         return (
@@ -57,21 +72,6 @@ class App extends Component {
                 </div>
             </div>
         );
-    }
-    
-    remove(val) {
-        let array = this.state.itemList;
-        array = array.filter(function (x) {
-			 return x.text !== val;
-		});
-		this.setState({itemList: array});
-    }
-    
-    choose() {
-        let list = this.state.itemList;
-        let r = Math.floor(Math.random() * list.length);
-        this.setState({choose: true});
-        this.setState({result: list[r].text});
     }
 }
 
