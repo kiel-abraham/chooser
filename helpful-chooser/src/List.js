@@ -11,7 +11,7 @@ class List extends Component {
     render() {
         return (
             <ul className="list-group">
-                {this.props.list.map(c => <Item key={c.id} item={c.text} remove={this.remove}/>)}
+                {this.props.list.map(c => <Item key={c.id} item={c.text} remove={this.props.remove} choose={this.props.choose} result={this.props.result} />)}
             </ul>
         );
     }
