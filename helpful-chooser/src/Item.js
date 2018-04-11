@@ -9,19 +9,19 @@ class Item extends Component {
     }
     
     remove() {
-        this.props.remove(this.props.item);
+        this.props.remove(this.props.text);
     }
     
     render() {
         let active;
-        if (this.props.result === this.props.item) {
+        if (this.props.result === this.props.text) {
             active = "active";
         }
         
         return (
             <li className={`list-group-item ${active}`}>
-                {this.props.item}
-            { !this.props.choose ?
+                {this.props.text}
+            { !this.props.chosen ?
                 <div className="close-item pull-right text-danger" onClick={this.remove}>
                     <i className="fa fa-window-close" aria-hidden="true"></i>
                     <span className="sr-only">Remove</span>

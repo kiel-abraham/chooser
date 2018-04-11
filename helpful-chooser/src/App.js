@@ -11,21 +11,11 @@ class App extends Component {
         this.create = this.create.bind(this);
         this.state = {
 			itemList: [],
-			choose: false,
+			chosen: false,
+			disabled: true,
 			result: ""
 		};
     }
-    
-    componentDidMount() {
-		this.setState({
-            itemList:[
-                {id: 1, text: "Test1"},
-                {id: 2, text: "Test2"},
-                {id: 3, text: "Test3"},
-                {id: 4, text: "Test4"}
-            ]
-        });
-	}
 	
 	remove(val) {
         let array = this.state.itemList;
@@ -38,17 +28,27 @@ class App extends Component {
     choose() {
         let options = this.state.itemList;
         let r = Math.floor(Math.random() * options.length);
-        this.setState({choose: true});
+        this.setState({chosen: true});
         this.setState({result: options[r].text});
     }
     
     create(e) {
         e.preventDefault();
         let inputItem = this.refs.createItem.value;
-        console.log(inputItem);
-        this.state.itemList.push({id: 7, text: inputItem});
+        if (inputItem === "") {
+            return;
+        }
+        let checkValue = this.state.itemList.filter(tag => tag.text === inputItem);
+        if (checkValue.length > 0) {
+            this.refs.createItem.value = "";
+            return;
+        }
+        let time = Date.now();
+        this.state.itemList.push({id: time, text: inputItem});
         this.setState({itemList: this.state.itemList});
-        
+        if (this.state.itemList.length > 1) {
+            this.setState({disabled: false});
+        }
         this.refs.createItem.value = "";
     }
     
@@ -56,7 +56,7 @@ class App extends Component {
         return (
             <div className="row">
                 <div className="col-md-6">
-                    { this.state.choose ?
+                    { this.state.chosen ?
                     <a href="" className="btn btn-default">Start Over <i className="fa fa-refresh" aria-hidden="true"></i></a>
                     :
                     <div>
@@ -64,7 +64,7 @@ class App extends Component {
                             <div className="form-group">
                                 <label className="control-label" htmlFor="input"></label>
                                 <div className="input-group">
-                                    <input type="text" id="input" className="form-control" placeholder="Enter an option" autoFocus ref="createItem" />
+                                    <input type="text" id="input" className="form-control" placeholder="Enter an option" autoFocus ref="createItem" autoComplete="off"/>
                                     <span className="input-group-btn">
                                         <button className="btn btn-info">
                                             <i className="fa fa-plus" aria-hidden="true"></i>
@@ -74,12 +74,12 @@ class App extends Component {
                                 </div>
                             </div>
                         </form>
-                        <button className="btn btn-primary" onClick={this.choose}>Choose</button>
+                        <button className="btn btn-primary" onClick={this.choose} disabled={this.state.disabled}>Choose</button>
                     </div>
                     }
                 </div>
                 <div className="col-md-6">
-                    <List list={this.state.itemList} remove={this.remove} choose={this.state.choose} result={this.state.result} />
+                    <List list={this.state.itemList} remove={this.remove} chosen={this.state.chosen} result={this.state.result} />
                 </div>
             </div>
         );
