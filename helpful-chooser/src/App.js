@@ -9,6 +9,7 @@ class App extends Component {
         this.remove = this.remove.bind(this);
         this.choose = this.choose.bind(this);
         this.create = this.create.bind(this);
+        this.reset = this.reset.bind(this);
         this.state = {
 			itemList: [],
 			chosen: false,
@@ -30,6 +31,15 @@ class App extends Component {
         let r = Math.floor(Math.random() * options.length);
         this.setState({chosen: true});
         this.setState({result: options[r].text});
+    }
+    
+    reset() {
+        this.setState({
+            itemList: [],
+			chosen: false,
+			disabled: true,
+			result: ""
+        });
     }
     
     create(e) {
@@ -57,7 +67,7 @@ class App extends Component {
             <div className="row">
                 <div className="col-md-6">
                     { this.state.chosen ?
-                    <a href="" className="btn btn-default">Start Over <i className="fa fa-refresh" aria-hidden="true"></i></a>
+                    <button onClick={this.reset} className="btn btn-default">Start Over <i className="fa fa-refresh" aria-hidden="true"></i></button>
                     :
                     <div>
                         <form onSubmit={this.create}>
