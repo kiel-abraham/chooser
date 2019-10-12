@@ -10,3 +10,7 @@ form {
 .close-item {
     cursor: pointer;
 }
+
+.btn-primary {
+    margin-botton: 1rem;
+}
