@@ -1,0 +1,32 @@
+<main>
+  <h1>Helpful Chooser</h1>
+  <p>Welcome to our random choice generator.</p>
+  <p>
+    Enter as many options as you like and let the Helpful Chooser do the work!
+  </p>
+
+  <form #addTodo="ngForm" (submit)="onSubmit()">
+    <label>
+      Enter an option
+      <input
+        type="text"
+        name="option"
+        class="form-control"
+        placeholder="Add option"
+        [(ngModel)]="input"
+        required
+      />
+    </label>
+    <button type="submit" [disabled]="!input">Add</button>
+  </form>
+
+  <app-list [items]="items" (removeItemEvent)="remove($event)"></app-list>
+
+  <div *ngIf="result; else empty">
+    <p>Selected choice: {{ result }}</p>
+    <button (click)="startOver()">Start over</button>
+  </div>
+  <ng-template #empty>
+    <button (click)="choose()" [disabled]="items.length < 2">Choose</button>
+  </ng-template>
+</main>
