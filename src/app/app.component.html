@@ -1,14 +1,18 @@
 <main>
-  <h1>Helpful Chooser</h1>
-  <p>Welcome to our random choice generator.</p>
-  <p>
-    Enter as many options as you like and let the Helpful Chooser do the work!
-  </p>
+  <div class="wrapper">
+    <div>
+      <h1>Helpful Chooser</h1>
+      <p>Welcome to our random choice generator.</p>
+      <p>
+        Enter as many options as you like and let the Helpful Chooser do the
+        work!
+      </p>
+    </div>
 
-  <form #addTodo="ngForm" (submit)="onSubmit()">
-    <label>
-      Enter an option
+    <form #addTodo="ngForm" (submit)="onSubmit()">
+      <label for="input" class="sr-only"> Enter an option </label>
       <input
+        id="input"
         type="text"
         name="option"
         class="form-control"
@@ -16,17 +20,19 @@
         [(ngModel)]="input"
         required
       />
-    </label>
-    <button type="submit" [disabled]="!input">Add</button>
-  </form>
+      <button type="submit" [disabled]="!input" class="outlined">Add</button>
+    </form>
 
-  <app-list [items]="items" (removeItemEvent)="remove($event)"></app-list>
+    <app-list [items]="items" (removeItemEvent)="remove($event)"></app-list>
 
-  <div *ngIf="result; else empty">
-    <p>Selected choice: {{ result }}</p>
-    <button (click)="startOver()">Start over</button>
+    <div class="actions">
+      <div *ngIf="result; else empty">
+        <p>Selected choice: {{ result }}</p>
+        <button (click)="startOver()">Start over</button>
+      </div>
+      <ng-template #empty>
+        <button *ngIf="items.length > 1" (click)="choose()">Choose</button>
+      </ng-template>
+    </div>
   </div>
-  <ng-template #empty>
-    <button (click)="choose()" [disabled]="items.length < 2">Choose</button>
-  </ng-template>
 </main>
