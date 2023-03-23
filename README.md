@@ -1,9 +1,11 @@
 # chooser
-A helpful chooser to help when you're being indecisive 
+
+A helpful chooser to help when you're being indecisive
 
 # HelpfulChooser
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 15.2.4.
+`npm install -g @angular/cli`
 
 ## Development server
 
@@ -16,6 +18,12 @@ Run `ng generate component component-name` to generate a new component. You can 
 ## Build
 
 Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
+
+## Deploy GH Pages
+
+From the `gh-pages` branch
+`ng add angular-cli-ghpages`
+`ng deploy --base-href=https://kiel-abraham.github.io/chooser/`
 
 ## Running unit tests
 
